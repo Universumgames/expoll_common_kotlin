@@ -17,7 +17,7 @@ repositories {
     mavenCentral()
 
     maven {
-        url = uri("https://git.mt32.net/api/v4/projects/170/-/packages/maven")
+        url = uri("https://git.mt32.net/api/v4/projects/170/packages/maven")
         name = "GitLab"
         credentials(HttpHeaderCredentials::class) {
             name = "Job-Token"
@@ -27,8 +27,27 @@ repositories {
             create("header", HttpHeaderAuthentication::class)
         }
     }
+}
 
-
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }
+    }
+    repositories {
+        maven {
+            url = uri("https://git.mt32.net/api/v4/projects/170/packages/maven")
+            name = "GitLab"
+            credentials(HttpHeaderCredentials::class) {
+                name = "Job-Token"
+                value = System.getenv("CI_JOB_TOKEN")
+            }
+            authentication {
+                create("header", HttpHeaderAuthentication::class)
+            }
+        }
+    }
 }
 
 dependencies {
