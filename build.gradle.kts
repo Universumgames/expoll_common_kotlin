@@ -17,7 +17,7 @@ repositories {
     mavenCentral()
 
     maven {
-        url = uri("https://git.mt32.net/api/v4/groups/expoll/expoll-kotlin-common/-/packages/maven")
+        url = uri("https://git.mt32.net/api/v4/projects/170/-/packages/maven")
         name = "GitLab"
         credentials(HttpHeaderCredentials::class) {
             name = "Job-Token"
