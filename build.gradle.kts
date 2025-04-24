@@ -15,6 +15,20 @@ version = "4.2.4"
 
 repositories {
     mavenCentral()
+
+    maven {
+        url = uri("https://git.mt32.net/api/v4/groups/expoll/expoll-kotlin-common/-/packages/maven")
+        name = "GitLab"
+        credentials(HttpHeaderCredentials::class) {
+            name = "Job-Token"
+            value = System.getenv("CI_JOB_TOKEN")
+        }
+        authentication {
+            create("header", HttpHeaderAuthentication::class)
+        }
+    }
+
+
 }
 
 dependencies {

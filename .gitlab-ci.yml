@@ -1,0 +1,13 @@
+stages:
+  - publish
+
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+publish:
+  stage: publish
+  image: gradle:8.4-jdk17
+  script:
+    - gradle publish
+  only:
+    - main
