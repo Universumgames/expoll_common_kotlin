@@ -7,6 +7,7 @@ val defaultJSON = Json {
     ignoreUnknownKeys = true
     prettyPrint = true
     encodeDefaults = true
+
 }
 
 /**
@@ -14,7 +15,7 @@ val defaultJSON = Json {
  */
 fun mergeJsonObjects(obj1: JsonObject, obj2: JsonObject?): JsonObject {
     if (obj2 == null) return obj1
-    val merged = obj1.toMutableMap();
+    val merged = obj1.toMutableMap()
     merged.forEach { entry ->
         if (obj2.containsKey(entry.key)) {
             //println(merged[entry.key].toString())

@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "net.mt32.expoll.commons"
-version = "4.2.4"
+version = "4.3.0"
 
 repositories {
     mavenCentral()
@@ -56,6 +56,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${kotlinx_serialization_version}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinx_coroutines_version}")
     implementation("joda-time:joda-time:2.13.0")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
 
     // Ktor client
     implementation("io.ktor:ktor-client-core:${ktor_version}")
