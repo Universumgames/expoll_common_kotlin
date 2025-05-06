@@ -63,6 +63,7 @@ dependencies {
     implementation("io.ktor:ktor-client-jetty:${ktor_version}")
     implementation("io.ktor:ktor-client-java:${ktor_version}")
     implementation("io.ktor:ktor-client-content-negotiation:${ktor_version}")
+    implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:${ktor_version}")
 }
 
 tasks.test {

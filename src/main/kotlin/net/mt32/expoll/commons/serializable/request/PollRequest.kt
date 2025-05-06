@@ -54,3 +54,6 @@ data class PollRequest(
     val pollID: tPollID? = null,
     val searchParameters: PollSearchParameters? = null,
 )
+
+@Serializable
+data class PollHideRequest(val pollID: tPollID, val hide: Boolean? = true)

@@ -18,3 +18,8 @@ enum class Platform {
     WEB,
     UNKNOWN
 }
+
+@Serializable
+data class LogoutRequest(
+    val nonce: Long? = null
+)

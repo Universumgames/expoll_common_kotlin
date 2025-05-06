@@ -10,3 +10,13 @@ data class OIDCConnection(
     val subject: String,
     val index: Int = 0
 )
+
+@Serializable
+data class OIDCInfo(
+    val key: String,
+    val imageURI: String,
+    val iconFileName: String,
+    val iconBackgroundColorHex: String,
+    val textColorHex: String,
+    val title: String
+)
