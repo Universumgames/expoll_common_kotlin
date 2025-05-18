@@ -17,6 +17,7 @@ data class CreatePollRequest(
     val allowsEditing: Boolean,
     val privateVoting: Boolean = false,
     val defaultVote: Int?,
+    val useUTC: Boolean = false,
 )
 
 interface IBasicPollOperation {
@@ -40,7 +41,7 @@ data class EditPollRequest(
     val userAdd: List<tUserID> = listOf(),
     val votes: List<VoteChange> = listOf(),
     val options: List<ComplexOption> = listOf(),
-    val notes: List<UserNote> = listOf()
+    val notes: List<UserNote> = listOf(),
 ) : IBasicPollOperation
 
 @Serializable

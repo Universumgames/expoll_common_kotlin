@@ -47,6 +47,7 @@ data class DetailedPollResponse(
     val shareURL: String,
     override val hidden: Boolean,
     val defaultVote: Int?,
+    val useUTC: Boolean
 ): PollResponse
 
 @Serializable
@@ -64,6 +65,7 @@ data class ComplexOption(
     val dateEnd: tClientDate? = null,
     val dateTimeStart: tClientDateTime? = null,
     val dateTimeEnd: tClientDateTime? = null,
+    val timezone: String? = null,
 )
 
 @Serializable

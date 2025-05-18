@@ -112,8 +112,8 @@ class UnixTimestamp private constructor() : Comparable<UnixTimestamp> {
         return toDate().toString()
     }
 
-    fun toDateString(): String {
-        val tz = TimeZone.getTimeZone("UTC")
+    fun toDateString(timezone: String?): String {
+        val tz = TimeZone.getTimeZone(timezone ?: "UTC")
         val df: DateFormat = with(SimpleDateFormat("yyyy-MM-dd")) {
             timeZone = tz
             this
@@ -121,8 +121,8 @@ class UnixTimestamp private constructor() : Comparable<UnixTimestamp> {
         return df.format(toDate())
     }
 
-    fun toDateTimeString(includeSeconds: Boolean = false): String {
-        val tz = TimeZone.getTimeZone("UTC")
+    fun toDateTimeString(timezone: String?, includeSeconds: Boolean = false): String {
+        val tz = TimeZone.getTimeZone(timezone ?: "UTC")
         val df: DateFormat = with(SimpleDateFormat("yyyy-MM-dd HH:mm" + if (includeSeconds) ":ss" else "")) {
             timeZone = tz
             this
