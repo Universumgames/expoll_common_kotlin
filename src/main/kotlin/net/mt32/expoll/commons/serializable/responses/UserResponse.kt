@@ -1,8 +1,8 @@
 package net.mt32.expoll.commons.serializable.responses
 
 import kotlinx.serialization.Serializable
-import net.mt32.expoll.commons.interfaces.IPollUserNote
 import net.mt32.expoll.commons.interfaces.ISimpleUser
+import net.mt32.expoll.commons.interfaces.SerializablePollUserNote
 import net.mt32.expoll.commons.serializable.request.Platform
 import net.mt32.expoll.commons.serializable.request.VoteChange
 import net.mt32.expoll.commons.tClientDateTime
@@ -59,7 +59,7 @@ data class UserPersonalizeResponse(
     var polls: List<StrippedPollData>,
     val votes: List<VoteChange>,
     var sessions: List<SafeSession>,
-    var notes: List<IPollUserNote>,
+    var notes: List<SerializablePollUserNote>,
     override var active: Boolean,
     override var admin: Boolean,
     var superAdmin: Boolean,
