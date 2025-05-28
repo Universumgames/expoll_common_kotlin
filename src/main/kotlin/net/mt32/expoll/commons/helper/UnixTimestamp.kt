@@ -141,6 +141,12 @@ class UnixTimestamp private constructor() : Comparable<UnixTimestamp> {
             return ts
         }
 
+        fun fromSecondsSince1970(seconds: Int): UnixTimestamp {
+            val ts = UnixTimestamp()
+            ts.millisSince1970 = seconds * 1000L
+            return ts
+        }
+
         fun fromMillisSince1970(millis: Long): UnixTimestamp {
             val ts = UnixTimestamp()
             ts.millisSince1970 = millis
@@ -167,6 +173,14 @@ class UnixTimestamp private constructor() : Comparable<UnixTimestamp> {
 
         fun fromDateComponents(year: Int, month: Int, day: Int): UnixTimestamp {
             return fromDateTimeComponents(year, month, day, 0, 0, 0)
+        }
+
+        fun isSameDay(ts1: UnixTimestamp, ts2: UnixTimestamp, timezone: String = "UTC"): Boolean {
+            val tz = TimeZone.getTimeZone(timezone)
+            val cal1 = Calendar.getInstance(tz).apply { time = ts1.toDate() }
+            val cal2 = Calendar.getInstance(tz).apply { time = ts2.toDate() }
+            return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                   cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR)
         }
     }
 }
