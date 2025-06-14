@@ -6,6 +6,7 @@ import org.joda.time.DateTimeZone
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.Instant
+import java.time.LocalDateTime
 import java.util.*
 
 
@@ -177,10 +178,10 @@ class UnixTimestamp private constructor() : Comparable<UnixTimestamp> {
 
         fun isSameDay(ts1: UnixTimestamp, ts2: UnixTimestamp, timezone: String = "UTC"): Boolean {
             val tz = TimeZone.getTimeZone(timezone)
-            val cal1 = Calendar.getInstance(tz).apply { time = ts1.toDate() }
-            val cal2 = Calendar.getInstance(tz).apply { time = ts2.toDate() }
-            return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
-                   cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR)
+
+            val ldt1 = LocalDateTime.ofInstant(ts1.toDate().toInstant(), tz.toZoneId())
+            val ldt2 = LocalDateTime.ofInstant(ts2.toDate().toInstant(), tz.toZoneId())
+            return ldt1.year == ldt2.year && ldt1.dayOfYear == ldt2.dayOfYear
         }
     }
 }
