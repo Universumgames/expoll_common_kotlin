@@ -13,7 +13,7 @@ fun dateFromUnixTimestamp(timestamp: Long): Date{
 
 fun timestampFromString(dbString: String): Long {
     return if(dbString.contains(":")) {
-        val df: SimpleDateFormat = SimpleDateFormat("yyy-MM-dd HH:mm:ss")
+        val df = SimpleDateFormat("yyy-MM-dd HH:mm:ss")
         val date: Date = df.parse(dbString)
         date.time
     }else dbString.toLongOrNull() ?: 0

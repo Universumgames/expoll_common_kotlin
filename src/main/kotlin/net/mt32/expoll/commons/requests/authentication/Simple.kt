@@ -6,7 +6,7 @@ import io.ktor.http.*
 import net.mt32.expoll.commons.requests.ExpollApiClient
 import net.mt32.expoll.commons.serializable.request.SimpleLoginRequest
 
-private val AUTH_SIMPLE_PATH = "/auth/simple"
+private const val AUTH_SIMPLE_PATH = "/auth/simple"
 
 suspend fun ExpollApiClient.requestLoginMail(mail: String): HttpStatusCode {
     val client = unauthorizedClient

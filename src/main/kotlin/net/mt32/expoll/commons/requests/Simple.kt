@@ -5,7 +5,7 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import net.mt32.expoll.commons.serializable.responses.MailRegexRules
 
-private val SIMPLE_PATH = "/simple"
+private const val SIMPLE_PATH = "/simple"
 
 suspend fun ExpollApiClient.getPollTitle(pollID: String): String? {
     val client = unauthorizedClient

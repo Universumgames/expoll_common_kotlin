@@ -5,10 +5,11 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import net.mt32.expoll.commons.serializable.request.CreateUserRequest
 import net.mt32.expoll.commons.serializable.request.EditUserRequest
+import net.mt32.expoll.commons.serializable.request.search.UserSearchParameters
 import net.mt32.expoll.commons.serializable.responses.CreateUserResponse
 import net.mt32.expoll.commons.serializable.responses.SafeSession
 
-private val USER_PATH = "/user"
+private const val USER_PATH = "/user"
 
 suspend fun ExpollApiClient.createUser(request: CreateUserRequest): Pair<HttpStatusCode, CreateUserResponse?> {
     val client = unauthorizedClient
@@ -112,7 +113,7 @@ suspend fun ExpollApiClient.deleteUserCancel(): HttpStatusCode {
     return response.status
 }
 
-suspend fun ExpollApiClient.getAvailableUserSerachParameters(){
+suspend fun ExpollApiClient.getAvailableUserSearchParameters(): UserSearchParameters{
     val client = unauthorizedClient
     if (client == null) {
         throw IllegalStateException("ExpollApiClient is not initialized.")
@@ -121,5 +122,10 @@ suspend fun ExpollApiClient.getAvailableUserSerachParameters(){
         url("${ExpollApiClient.apiBaseUrl}$USER_PATH/availableSearch")
         method = HttpMethod.Get
         contentType(ContentType.Application.Json)
+    }
+    return if (response.status.isSuccess()) {
+        response.body()
+    } else {
+        throw IllegalStateException("Failed to get available user search parameters: ${response.status}")
     }
 }

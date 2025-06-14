@@ -16,7 +16,7 @@ import java.util.*
 object DateSerializer : KSerializer<Date> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("Date", PrimitiveKind.STRING)
 
-    private val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+    private val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'")
     override fun deserialize(decoder: Decoder): Date {
         return formatter.parse(decoder.decodeString())
     }

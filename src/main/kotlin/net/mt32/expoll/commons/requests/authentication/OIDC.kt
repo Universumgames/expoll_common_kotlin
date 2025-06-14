@@ -7,7 +7,7 @@ import net.mt32.expoll.commons.requests.ExpollApiClient
 import net.mt32.expoll.commons.serializable.responses.OIDCConnection
 import net.mt32.expoll.commons.serializable.responses.OIDCInfo
 
-private val AUTH_OIDC_PATH = "/auth/oidc"
+private const val AUTH_OIDC_PATH = "/auth/oidc"
 
 suspend fun ExpollApiClient.getOIDCProviders(): List<OIDCInfo>?{
     val client = unauthorizedClient

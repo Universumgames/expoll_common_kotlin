@@ -199,7 +199,6 @@ fun Long.toUnixTimestampFromClient(): UnixTimestamp {
 }
 
 fun String.toUnixTimestampAsJSONDateString(): UnixTimestamp {
-    val tz = TimeZone.getTimeZone("UTC")
     val df: DateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'")
     return df.parse(this).toUnixTimestamp()
 }

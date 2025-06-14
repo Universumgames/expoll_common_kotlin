@@ -11,7 +11,7 @@ import net.mt32.expoll.commons.serializable.responses.PollCreatedResponse
 import net.mt32.expoll.commons.serializable.responses.PollListResponse
 import net.mt32.expoll.commons.tPollID
 
-private val POLL_PATH = "/polls"
+private const val POLL_PATH = "/polls"
 
 suspend fun ExpollApiClient.getPolls(searchParameters: PollSearchParameters?): Pair<HttpStatusCode, PollListResponse?>{
     val client = authorizedClient

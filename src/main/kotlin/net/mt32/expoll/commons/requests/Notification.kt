@@ -8,7 +8,7 @@ import net.mt32.expoll.commons.interfaces.NotificationPreferencesSerial
 import net.mt32.expoll.commons.interfaces.WebRegistrationData
 
 
-private val NOTIFICATION_PATH = "/notifications"
+private const val NOTIFICATION_PATH = "/notifications"
 
 suspend fun ExpollApiClient.getNotificationPreferences(): Pair<HttpStatusCode, NotificationPreferencesSerial?> {
     val client = authorizedClient

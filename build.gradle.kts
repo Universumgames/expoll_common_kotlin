@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "net.mt32.expoll.commons"
-version = "4.7.3"
+version = "4.7.3.1"
 
 repositories {
     mavenCentral()

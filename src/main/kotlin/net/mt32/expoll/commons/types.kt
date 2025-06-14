@@ -15,7 +15,7 @@ enum class PollType(val id: Int){
 
     companion object{
         fun valueOf(value: Int): PollType{
-            return values().find { it.id == value } ?: STRING
+            return entries.find { it.id == value } ?: STRING
         }
     }
 }
