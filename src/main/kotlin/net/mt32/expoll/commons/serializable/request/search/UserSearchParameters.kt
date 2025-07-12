@@ -18,7 +18,8 @@ data class UserSearchParameters(
         FIRST_NAME,
         LAST_NAME,
         MAIL,
-        DELETED
+        DELETED,
+        POLLS_OWNED
     }
 
     enum class SpecialFilter {
