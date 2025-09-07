@@ -19,7 +19,7 @@ fun timestampFromString(dbString: String): Long {
     }else dbString.toLongOrNull() ?: 0
 }
 
-fun getDelayToMidnight(now: Calendar): Long {
+fun getMillisToMidnight(now: Calendar): Long {
     val midnight = Calendar.getInstance()
     midnight.set(Calendar.HOUR_OF_DAY, 0)
     midnight.set(Calendar.MINUTE, 0)

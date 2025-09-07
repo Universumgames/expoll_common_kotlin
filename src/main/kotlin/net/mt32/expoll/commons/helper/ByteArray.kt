@@ -12,7 +12,7 @@ fun ByteArray.toBase64URL(): String =
 fun String.base64ToByteArray(): ByteArray =
     Base64.getUrlDecoder().decode(this)
 
-fun ByteArray.toBase62(): String {
+fun ByteArray.toLossyBase62(): String {
     val alphabet = String.Numbers + String.LowerEnglishAlphabet + String.UpperEnglishAlphabet
     val base = alphabet.length
     var str = ""

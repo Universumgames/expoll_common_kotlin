@@ -160,13 +160,20 @@ class UnixTimestamp private constructor() : Comparable<UnixTimestamp> {
             return ts
         }
 
-        fun zero(): UnixTimestamp{
+        fun zero(): UnixTimestamp {
             val ts = UnixTimestamp()
             ts.millisSince1970 = 0
             return ts
         }
 
-        fun fromDateTimeComponents(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int): UnixTimestamp {
+        fun fromDateTimeComponents(
+            year: Int,
+            month: Int,
+            day: Int,
+            hour: Int,
+            minute: Int,
+            second: Int
+        ): UnixTimestamp {
             val cal = Calendar.getInstance()
             cal.set(year, month - 1, day, hour, minute, second)
             return fromDate(cal.time)

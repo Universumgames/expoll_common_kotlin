@@ -1,12 +1,24 @@
+image: gradle:8.4-jdk17
 stages:
+  - test
   - publish
 
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
+test:
+    stage: test
+    script:
+        - gradle test
+    artifacts:
+        when: always
+        reports:
+          junit: build/test-results/test/*.xml
+        paths:
+        - build/reports/tests/test
+
 publish:
   stage: publish
-  image: gradle:8.4-jdk17
   script:
     - gradle publish
   only:
