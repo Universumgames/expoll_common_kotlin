@@ -7,16 +7,16 @@ fun Date.toUnixTimestamp(): UnixTimestamp {
     return UnixTimestamp.fromDate(this)
 }
 
-fun dateFromUnixTimestamp(timestamp: Long): Date{
-    return Date(timestamp * 1000)
-}
-
-fun timestampFromString(dbString: String): Long {
-    return if(dbString.contains(":")) {
+fun timestampFromString(dbString: String): Long? {
+    return if (dbString.contains(":")) {
         val df = SimpleDateFormat("yyy-MM-dd HH:mm:ss")
-        val date: Date = df.parse(dbString)
-        date.time
-    }else dbString.toLongOrNull() ?: 0
+        try {
+            val date: Date = df.parse(dbString)
+            date.time
+        } catch (_: Exception) {
+            null
+        }
+    } else dbString.toLongOrNull()
 }
 
 fun getMillisToMidnight(now: Calendar): Long {

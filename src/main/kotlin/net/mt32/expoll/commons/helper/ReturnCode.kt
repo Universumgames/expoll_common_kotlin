@@ -2,6 +2,9 @@ package net.mt32.expoll.commons.helper
 
 import io.ktor.http.*
 
+/**
+ * Standardized return codes for API responses
+ */
 object ReturnCode {
     /** HTTP Code 200 */
     val OK = HttpStatusCode.OK

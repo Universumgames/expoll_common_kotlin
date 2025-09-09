@@ -9,12 +9,21 @@ import java.time.Instant
 import java.time.LocalDateTime
 import java.util.*
 
-
+/**
+ * A class representing a Unix timestamp, which is the number of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT).
+ * This class provides various utility methods for manipulating and formatting timestamps.
+ */
 class UnixTimestamp private constructor() : Comparable<UnixTimestamp> {
 
+    /**
+     * The number of seconds since January 1, 1970.
+     */
     val secondsSince1970: Long
         get() = millisSince1970 / 1000
 
+    /**
+     * The number of milliseconds since January 1, 1970.
+     */
     var millisSince1970: Long = 0
 
     operator fun plus(timestamp: UnixTimestamp): UnixTimestamp {
@@ -36,7 +45,6 @@ class UnixTimestamp private constructor() : Comparable<UnixTimestamp> {
     operator fun minusAssign(timestamp: UnixTimestamp) {
         millisSince1970 -= timestamp.millisSince1970
     }
-
 
     fun equals(timestamp: UnixTimestamp): Boolean {
         return millisSince1970 == timestamp.millisSince1970
@@ -68,6 +76,10 @@ class UnixTimestamp private constructor() : Comparable<UnixTimestamp> {
         return addHours(days * 24)
     }
 
+    /**
+     * Converts the UnixTimestamp to a Date object.
+     * @return A Date object representing the same point in time as the UnixTimestamp.
+     */
     fun toDate(): Date {
         return Date.from(Instant.ofEpochMilli(millisSince1970))
     }
@@ -80,10 +92,18 @@ class UnixTimestamp private constructor() : Comparable<UnixTimestamp> {
         return millisSince1970
     }
 
+    /**
+     * Converts the UnixTimestamp to a format suitable for database storage (seconds since 1970).
+     * @return A Long representing the number of seconds since January 1, 1970.
+     */
     fun toDB(): Long {
         return secondsSince1970
     }
 
+    /**
+     * Converts the UnixTimestamp to a format suitable for client communication (milliseconds since 1970).
+     * @return A Long representing the number of milliseconds since January 1, 1970.
+     */
     fun toClient(): tClientDateTime {
         return millisSince1970
     }
@@ -98,10 +118,10 @@ class UnixTimestamp private constructor() : Comparable<UnixTimestamp> {
         cal.add(Calendar.DAY_OF_MONTH, 1)
         cal.set(Calendar.HOUR_OF_DAY, 0)
         cal.set(Calendar.MINUTE, 0)
-        return UnixTimestamp.fromDate(cal.time)
+        return fromDate(cal.time)
     }
 
-    fun todaysMidnight(): UnixTimestamp {
+    fun lastMidnight(): UnixTimestamp {
         val cal = Calendar.getInstance()
         cal.time = toDate()
         cal.set(Calendar.HOUR_OF_DAY, 0)
@@ -193,19 +213,23 @@ class UnixTimestamp private constructor() : Comparable<UnixTimestamp> {
     }
 }
 
+/**
+ * Interprets the Long as seconds since 1970 and converts it to a UnixTimestamp
+ */
 fun Long.toUnixTimestampAsSecondsSince1970(): UnixTimestamp {
     return UnixTimestamp.fromSecondsSince1970(this)
 }
 
+/**
+ * Interprets the Long as milliseconds since 1970 and converts it to a UnixTimestamp
+ */
 fun Long.toUnixTimestampFromDB(): UnixTimestamp {
     return toUnixTimestampAsSecondsSince1970()
 }
 
+/**
+ * Interprets the Long as milliseconds since 1970 and converts it to a UnixTimestamp
+ */
 fun Long.toUnixTimestampFromClient(): UnixTimestamp {
     return UnixTimestamp.fromMillisSince1970(this)
-}
-
-fun String.toUnixTimestampAsJSONDateString(): UnixTimestamp {
-    val df: DateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'")
-    return df.parse(this).toUnixTimestamp()
 }

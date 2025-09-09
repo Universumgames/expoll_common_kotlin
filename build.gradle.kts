@@ -3,15 +3,15 @@ val kotlinx_coroutines_version: String by project
 val ktor_version: String by project
 
 plugins {
-    kotlin("jvm") version "2.1.20"
+    kotlin("jvm") version "2.2.10"
     `maven-publish`
 
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.2.10"
     id("com.gradleup.shadow") version "8.3.5"
 }
 
 group = "net.mt32.expoll.commons"
-version = "4.7.3.3"
+version = "4.7.4"
 
 repositories {
     mavenCentral()
@@ -69,6 +69,7 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
 kotlin {
-    jvmToolchain(23)
+    jvmToolchain(24)
 }

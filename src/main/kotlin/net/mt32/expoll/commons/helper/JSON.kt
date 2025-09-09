@@ -2,17 +2,23 @@ package net.mt32.expoll.commons.helper
 
 import kotlinx.serialization.json.*
 
-
+/** Default JSON configuration for kotlinx.serialization
+ * - ignoreUnknownKeys: true
+ * - prettyPrint: true
+ * - encodeDefaults: true
+ */
 val defaultJSON = Json {
     ignoreUnknownKeys = true
     prettyPrint = true
     encodeDefaults = true
-
 }
 
 object JSONHelper {
     /**
      * Merge two Json objects , if duplicates exist, use values from obj2
+     * @param obj1 The first JsonObject
+     * @param obj2 The second JsonObject, overrides values in obj1
+     * @return Merged JsonObject
      */
     fun mergeJsonObjects(obj1: JsonObject, obj2: JsonObject?): JsonObject {
         if (obj2 == null) return obj1
@@ -40,6 +46,12 @@ object JSONHelper {
     }
 }
 
+/**
+ * Convert a JsonObject to a Map<String, *>
+ * Handles nested JsonObjects and JsonArrays
+ * @receiver JsonObject The JsonObject to convert
+ * @return Map<String, *> The converted Map
+ */
 fun JsonObject.toMap(): Map<String, *> = keys.asSequence().associateWith {
     when (val value = this[it]) {
         is JsonArray -> {
