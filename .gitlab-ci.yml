@@ -1,4 +1,4 @@
-image: gradle:9.0.0-jdk25
+image: gradle:9.4.0-jdk25
 stages:
   - test
   - publish
